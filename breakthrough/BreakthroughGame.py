@@ -143,7 +143,17 @@ class BreakthroughGame(Game):
 
     def getSymmetries(self, board, pi):
         # Due to our action encoding, we can safely flip board and pi left-right
-        return [(board, pi), (np.fliplr(board), np.fliplr(pi))]
+        return [(board, pi), (np.fliplr(board), np.flip(pi))]
 
     def stringRepresentation(self, board):
-        return '\n'.join(' '.join(('.', 'W', 'B')[p] for p in row) for row in board)
+        return ''.join(('.', 'W', 'B')[p] for p in board.flat)
+    
+    @staticmethod
+    def display(board, output=True):
+        result = ('\n' + '-'*(3*8+8) + '\n').join([
+            ' ' + ' | '.join([f'{("_", "W", "B")[p]}' for p in row])
+            for row in board
+        ])
+        if output:
+            print(result)
+        return result
