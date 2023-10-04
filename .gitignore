@@ -10,4 +10,5 @@ checkpoints/
 
 # For PyCharm users
 .idea/
-
+venv
+**/__pycache__
